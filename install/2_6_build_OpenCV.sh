@@ -2,7 +2,7 @@
 
 
 OPENCV_VERSION=4.5.1
-ARCH_BIN=5.3
+CUDA_GENERATION=Auto
 INSTALL_DIR=/usr/local
 DOWNLOAD_OPENCV_EXTRAS=YES
 OPENCV_SOURCE_DIR=~/AquilaBuild
@@ -14,9 +14,14 @@ CMAKE_INSTALL_PREFIX=$INSTALL_DIR
 
 cd $OPENCV_SOURCE_DIR/opencv-${OPENCV_VERSION}
 sed -i 's/include <Eigen\/Core>/include <eigen3\/Eigen\/Core>/g' modules/core/include/opencv2/core/private.hpp
-cd $OPENCV_SOURCE_DIR
 
-cd $OPENCV_SOURCE_DIR/opencv-${OPENCV_VERSION}
+cd $OPENCV_SOURCE_DIR
+sudo cp -rf opencv-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}
+sudo chown -R $(whoami) /opt/opencv-${OPENCV_VERSION}
+cp -rf opencv_extra-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_extra-${OPENCV_VERSION}
+cp -rf opencv_contrib-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}
+
+cd /opt/opencv-${OPENCV_VERSION}
 mkdir build
 cd build
 
@@ -25,7 +30,7 @@ rm -rf *
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} \
       -D WITH_CUDA=ON \
-      -D CUDA_ARCH_BIN=${ARCH_BIN} \
+      -D CUDA_GENERATION=${CUDA_GENERATION} \
       -D CUDA_ARCH_PTX="" \
       -D ENABLE_FAST_MATH=ON \
       -D CUDA_FAST_MATH=ON \
@@ -43,10 +48,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_DOCS=ON \
       -D BUILD_EXAMPLES=ON \
       -D INSTALL_TESTS=ON \
-      -D OPENCV_TEST_DATA_PATH=$OPENCV_SOURCE_DIR/opencv_extra-${OPENCV_VERSION}/testdata \
+      -D OPENCV_TEST_DATA_PATH=/opt/opencv-${OPENCV_VERSION}/opencv_extra-${OPENCV_VERSION}/testdata \
       -D INSTALL_C_EXAMPLES=ON \
       -D INSTALL_PYTHON_EXAMPLES=ON \
-      -D OPENCV_EXTRA_MODULES_PATH=$OPENCV_SOURCE_DIR/opencv_contrib-${OPENCV_VERSION}/modules \
+      -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}/modules \
       -D OPENCV_ENABLE_NONFREE=ON \
       -D OpenCL_INCLUDE_DIR=/usr/local/cuda/include/ \
       -D OpenCL_LIBRARY=/usr/local/cuda-10.2/lib64/libOpenCL.so \

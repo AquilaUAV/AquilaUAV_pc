@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Removing OpenCV"
-sudo apt remove python-opencv
-sudo apt remove python3-opencv
+sudo apt remove -y ros-melodic*
+sudo apt remove -y python-opencv
+sudo apt remove -y python3-opencv
 pip uninstall python-opencv
 pip3 uninstall python-opencv
 sudo sudo apt-get purge -y *libopencv*
