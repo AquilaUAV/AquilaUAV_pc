@@ -45,10 +45,12 @@ gnome-tweaks
 
 ```bash
 sudo apt-get install -y git
+cd
 git clone https://github.com/AquilaUAV/AquilaUAV_pc.git
-cd AquilaUAV_pc
+cd ~/AquilaUAV_pc
 ```
 
+Также рекомендуется включить [автоматический вход в систему](https://linuxconfig.org/how-to-enable-automatic-login-on-ubuntu-18-04-bionic-beaver-linux), чтобы установка могла быть более автоматизированной.
 
 
-#### 
+
