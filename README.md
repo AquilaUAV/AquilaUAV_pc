@@ -91,7 +91,7 @@ USER ALL=NOPASSWD: ALL
 По проектам на данный момент работают примеры из [VINS-Fusion-gpu](https://github.com/IOdissey/VINS-Fusion-gpu) (форк для работы с OpenCV 4):
 
 ```bash
-~/AquilaUAV_pc/install.sh projects
+~/AquilaUAV_pc/install.sh VINS-Fusion-GPU
 ```
 
 Перед запуском всех нод этого проекта необходимо подключить его окружение. Чтобы не возникало проблем с cv_bridge, было решено изолировать пакеты этого проекта от остальных:
