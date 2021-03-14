@@ -1,3 +1,4 @@
+*.o
+
 NVIDIA_CUDA-10.2_Samples/bin
-NVIDIA_CUDA-10.2_Samples/**.*.o
 
