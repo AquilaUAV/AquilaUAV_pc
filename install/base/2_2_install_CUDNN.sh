@@ -24,5 +24,4 @@ cd ~/AquilaBuild/cudnn_samples_v8/mnistCUDNN
 make clean && make
 ./mnistCUDNN
 
-sudo reboot
 

@@ -14,5 +14,5 @@ sudo rm -rf /usr/lib/python3.6/dist-packages/cv2
 sudo rm -rf /usr/lib/python2.7/dist-packages/cv2
 sudo rm -rf /usr/local/lib/python3.6/dist-packages/cv2
 sudo rm -rf /usr/local/lib/python2.7/dist-packages/cv2
+sudo rm -rf ~/catkin_ws
 mkdir ~/AquilaBuild
-

@@ -21,14 +21,14 @@ sudo apt-get install -y python3-dev python3-pip
 sudo apt-get install -y python-dev python-pip
 sudo apt-get install -y python3-testresources
 sudo apt-get install -y python-testresources
-pip install --upgrade pip
-pip3 install --upgrade pip
-pip install numpy
-pip install pillow
-pip install imutils
-pip3 install numpy
-pip3 install pillow
-pip3 install imutils
+pip install --user --upgrade pip
+pip3 install --user --upgrade pip
+pip install --user numpy
+pip install --user pillow
+pip install --user imutils
+pip3 install --user numpy
+pip3 install --user pillow
+pip3 install --user imutils
 sudo apt-get install -y libtbb-dev
 sudo apt-get install -y libatlas-base-dev gfortran
 sudo apt-get install -y libprotobuf-dev protobuf-compiler
@@ -42,6 +42,4 @@ sudo apt-get install -y qtbase5-dev
 sudo apt-get install -y qtdeclarative5-dev
 sudo apt-get install -y libopenblas-dev
 sudo apt-get install -y liblapacke-dev
-
-sudo reboot
 

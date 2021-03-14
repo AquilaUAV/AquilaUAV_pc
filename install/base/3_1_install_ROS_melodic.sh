@@ -12,5 +12,4 @@ sudo apt install -y python-rosdep python-rosinstall python-rosinstall-generator 
 sudo apt install -y python-rosdep
 sudo rosdep init
 rosdep update
-sudo reboot
 
