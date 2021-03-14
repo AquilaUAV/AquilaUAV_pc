@@ -21,14 +21,14 @@ sudo apt-get install -y python3-dev python3-pip
 sudo apt-get install -y python-dev python-pip
 sudo apt-get install -y python3-testresources
 sudo apt-get install -y python-testresources
-pip install --user --upgrade pip
-pip3 install --user --upgrade pip
-pip install --user numpy
-pip install --user pillow
-pip install --user imutils
-pip3 install --user numpy
-pip3 install --user pillow
-pip3 install --user imutils
+python -m pip install --user --upgrade pip
+python3 -m pip install --user --upgrade pip
+python -m pip install --user numpy
+python -m pip install --user pillow
+python -m pip install --user imutils
+python3 -m pip install --user numpy
+python3 -m pip install --user pillow
+python3 -m pip install --user imutils
 sudo apt-get install -y libtbb-dev
 sudo apt-get install -y libatlas-base-dev gfortran
 sudo apt-get install -y libprotobuf-dev protobuf-compiler
