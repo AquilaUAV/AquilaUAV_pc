@@ -2,6 +2,8 @@
 
 NUM_JOBS=$(nproc)
 
+rm -rf ~/catkin_workspaces
+
 mkdir -p ~/catkin_workspaces/catkin_global_ws/src
 cd ~/catkin_workspaces/catkin_global_ws/src
 catkin_init_workspace

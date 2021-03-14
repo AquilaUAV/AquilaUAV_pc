@@ -78,7 +78,6 @@ sudo ldconfig
 cd /opt/opencv-${OPENCV_VERSION}/samples
 cmake .
 make -j$NUM_JOBS
-sudo make install
 
 cd /usr/lib/python3.6/lib-dynload
 sudo ln -s /usr/lib/python3.6/dist-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so
