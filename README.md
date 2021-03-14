@@ -73,8 +73,30 @@ USER ALL=NOPASSWD: ALL
 Можно посмотреть список рабочих окружений, для которых работает автоматическая сборка:
 
 ```bash
-cd ~/AquilaUAV_pc
-./install.sh
+~/AquilaUAV_pc/install.sh
 ```
 
-Самый базовый пакет включает OpenCV 4.5.1, CUDA, CUDNN, ROS Melodic, Realsense2 SDK, 
+Базовый пакет включает OpenCV 4.5.1, CUDA 10.2, CUDNN 8.1.1, ROS Melodic, Realsense2 SDK и настройку для работы в PyCharm. Установить его очень просто:
+
+```bash
+~/AquilaUAV_pc/install.sh base
+```
+
+Пакет с TensorFlow в разработке, но уже можно поставить TensorRt:
+
+```bash
+~/AquilaUAV_pc/install.sh tensorflow
+```
+
+По проектам на данный момент работают примеры из [VINS-Fusion-gpu](https://github.com/IOdissey/VINS-Fusion-gpu) (форк для работы с OpenCV 4):
+
+```bash
+~/AquilaUAV_pc/install.sh projects
+```
+
+Перед запуском всех нод этого проекта необходимо подключить его окружение. Чтобы не возникало проблем с cv_bridge, было решено изолировать пакеты этого проекта от остальных:
+
+```bash
+source ~/catkin_workspaces/VINS-Fusion-GPU_ws/devel/setup.bash
+```
+
