@@ -19,6 +19,7 @@ sleep 2
 
 gnome-terminal -- bash -c "source ~/catkin_workspaces/VINS-Fusion-GPU_ws/devel/setup.bash; roslaunch vins vins_rviz.launch"
 
+source ~/catkin_workspaces/VINS-Fusion-GPU_ws/devel/setup.bash;
 rosbag play V2_03_difficult.bag
 
 rm -rf ~/.config/autostart/AquilaUAV_installation.desktop

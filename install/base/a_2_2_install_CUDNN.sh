@@ -9,7 +9,7 @@ wget https://developer.download.nvidia.com/compute/cuda/repos/${OS}/x86_64/cuda-
 sudo mv cuda-${OS}.pin /etc/apt/preferences.d/cuda-repository-pin-600
 sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/${OS}/x86_64/7fa2af80.pub
 sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/${OS}/x86_64/ /"
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y libcudnn8=${cudnn_version}-1+${cuda_version}
 sudo apt-get install -y libcudnn8-dev=${cudnn_version}-1+${cuda_version}
 

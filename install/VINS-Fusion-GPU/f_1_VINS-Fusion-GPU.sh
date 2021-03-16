@@ -9,15 +9,16 @@ cd ~/catkin_workspaces/VINS-Fusion-GPU_ws
 catkin_make -j$NUM_JOBS
 
 sudo apt-get install -y libgoogle-glog-dev libatlas-base-dev libsuitesparse-dev
-sudo apt-get install ros-melodic-tf ros-melodic-image-transport
+sudo apt-get install -y ros-melodic-tf ros-melodic-image-transport
 
 cd ~/AquilaBuild/
-sudo apt-get install cmake
-sudo apt-get install libgoogle-glog-dev libgflags-dev
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libeigen3-dev
-sudo apt-get install libsuitesparse-dev
+sudo apt-get install -y cmake
+sudo apt-get install -y libgoogle-glog-dev libgflags-dev
+sudo apt-get install -y libatlas-base-dev
+sudo apt-get install -y libeigen3-dev
+sudo apt-get install -y libsuitesparse-dev
 
+cd ~/AquilaBuild/
 wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
 tar zxf ceres-solver-1.14.0.tar.gz
 mkdir ceres-bin
