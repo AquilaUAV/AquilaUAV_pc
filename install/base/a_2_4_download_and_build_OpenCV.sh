@@ -63,11 +63,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D INSTALL_PYTHON_EXAMPLES=ON \
       -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}/modules \
       -D OPENCV_ENABLE_NONFREE=ON \
-      -D OpenCL_INCLUDE_DIR=/usr/local/cuda/include/ \
-      -D OpenCL_LIBRARY=/usr/local/cuda-10.2/lib64/libOpenCL.so \
-      -D CUDNN_INCLUDE_DIR=/usr/local/cuda/include \
-      -D CUDNN_LIBRARY=/usr/lib/x86_64-linux-gnu/libcudnn.so.8.1.1 \
-      -D CUDNN_VERSION='8.1.1' \
       $"PACKAGE_OPENCV" \
       ..
 
