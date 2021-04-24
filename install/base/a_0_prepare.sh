@@ -6,8 +6,8 @@ sudo apt remove -y python3-opencv
 python -m pip uninstall python-opencv
 python3 -m pip uninstall python-opencv
 sudo sudo apt-get purge -y *libopencv*
-sudo find / -name "*opencv*" -exec sudo rm -rf {} \;
-sudo find / -name "*opencv*" -exec sudo rm -rfi {} \;
+# sudo find / -name "*opencv*" -exec sudo rm -rf {} \;
+# sudo find / -name "*opencv*" -exec sudo rm -rfi {} \;
 sudo rm -rf /usr/lib/python3.6/lib-dynload/cv2*
 sudo rm -rf /usr/lib/python2.7/lib-dynload/cv2*
 sudo rm -rf /usr/lib/python3.6/dist-packages/cv2
