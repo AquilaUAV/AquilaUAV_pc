@@ -47,6 +47,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_CUBLAS=ON \
       -D WITH_LIBV4L=ON \
       -D ENABLE_NEON=ON \
+      -D WITH_TENGINE=ON \
       -D WITH_V4L=ON \
       -D WITH_VTK=ON \
       -D WITH_GSTREAMER=ON \
