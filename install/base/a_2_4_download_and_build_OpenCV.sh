@@ -21,8 +21,9 @@ unzip opencv.zip
 unzip opencv_contrib.zip
 unzip opencv_extra.zip
 
-cd $OPENCV_SOURCE_DIR/opencv-${OPENCV_VERSION}
-sed -i 's/include <Eigen\/Core>/include <eigen3\/Eigen\/Core>/g' modules/core/include/opencv2/core/private.hpp
+## --> https://www.programmersought.com/article/58866954910/
+# d $OPENCV_SOURCE_DIR/opencv-${OPENCV_VERSION}
+# sed -i 's/include <Eigen\/Core>/include <eigen3\/Eigen\/Core>/g' modules/core/include/opencv2/core/private.hpp
 
 cd $OPENCV_SOURCE_DIR
 sudo cp -rf opencv-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}
