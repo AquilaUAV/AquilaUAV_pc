@@ -37,6 +37,9 @@ cd build
 
 rm -rf *
 
+# -D ENABLE_NEON=ON \
+# -D WITH_TENGINE=ON \
+
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} \
       -D WITH_CUDA=ON \
@@ -46,8 +49,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CUDA_FAST_MATH=ON \
       -D WITH_CUBLAS=ON \
       -D WITH_LIBV4L=ON \
-      -D ENABLE_NEON=ON \
-      -D WITH_TENGINE=ON \
       -D WITH_V4L=ON \
       -D WITH_VTK=ON \
       -D WITH_GSTREAMER=ON \
