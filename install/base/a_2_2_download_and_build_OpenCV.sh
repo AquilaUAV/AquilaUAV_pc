@@ -1,9 +1,8 @@
 #!/bin/bash
 
-
 OPENCV_VERSION=3.4.14
 ARCH_BIN=5.3
-INSTALL_DIR=/usr/local
+INSTALL_DIR=/usr
 DOWNLOAD_OPENCV_EXTRAS=YES
 OPENCV_SOURCE_DIR=~/AquilaBuild
 WHEREAMI=$PWD
@@ -21,24 +20,19 @@ unzip opencv.zip
 unzip opencv_contrib.zip
 unzip opencv_extra.zip
 
-## --> https://www.programmersought.com/article/58866954910/
-# d $OPENCV_SOURCE_DIR/opencv-${OPENCV_VERSION}
-# sed -i 's/include <Eigen\/Core>/include <eigen3\/Eigen\/Core>/g' modules/core/include/opencv2/core/private.hpp
-
 cd $OPENCV_SOURCE_DIR
 sudo cp -rf opencv-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}
-sudo chown -R $(whoami) /opt/opencv-${OPENCV_VERSION}
+CUR_USER=$(whoami)
+sudo chown -R $CUR_USER /opt/opencv-${OPENCV_VERSION}
 cp -rf opencv_extra-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_extra-${OPENCV_VERSION}
 cp -rf opencv_contrib-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}
+sudo chown -R $CUR_USER /opt/opencv-${OPENCV_VERSION}
 
 cd /opt/opencv-${OPENCV_VERSION}
 mkdir build
 cd build
 
 rm -rf *
-
-# -D ENABLE_NEON=ON \
-# -D WITH_TENGINE=ON \
 
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} \
@@ -48,10 +42,12 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D ENABLE_FAST_MATH=ON \
       -D CUDA_FAST_MATH=ON \
       -D WITH_CUDNN=ON \
+      -D OPENCV_DNN_CUDA=ON \
+      -D CUDNN_INCLUDE_DIR=/usr/lib/aarch64-linux-gnu \
+      -D CUDNN_LIBRARY=/usr/lib/aarch64-linux-gnu/libcudnn.so.8 \
       -D WITH_CUBLAS=ON \
       -D WITH_LIBV4L=ON \
       -D WITH_V4L=ON \
-      -D OPENCV_DNN_CUDA=ON \
       -D ENABLE_NEON=ON \
       -D WITH_GSTREAMER=ON \
       -D WITH_GSTREAMER_0_10=OFF \
@@ -59,13 +55,13 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_OPENGL=ON \
       -D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \
       -D BUILD_opencv_python2=ON \
-      -D PYTHON3_EXECUTABLE=/usr/bin/python2.7 \
-      -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python2.7/dist-packages/numpy/core/include/ \
-      -D PYTHON3_PACKAGES_PATH=/usr/lib/python2.7/dist-packages \
-      -D PYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython2.7.so \
+      -D PYTHON2_EXECUTABLE=/usr/bin/python2.7 \
+      -D PYTHON2_NUMPY_INCLUDE_DIRS=/usr/lib/python2.7/dist-packages/numpy/core/include \
+      -D PYTHON2_PACKAGES_PATH=/usr/lib/python2.7/dist-packages \
+      -D PYTHON2_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython2.7.so \
       -D BUILD_opencv_python3=ON \
       -D PYTHON3_EXECUTABLE=/usr/bin/python3.6 \
-      -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include/ \
+      -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/lib/python3/dist-packages/numpy/core/include \
       -D PYTHON3_PACKAGES_PATH=/usr/lib/python3/dist-packages \
       -D PYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython3.6m.so \
       -D BUILD_TESTS=ON \
@@ -83,15 +79,17 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 
 
 make -j$NUM_JOBS
-sudo make install
+sudo make -j$NUM_JOBS install
 sudo ldconfig
+
+#sudo /bin/bash -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
+#sudo ldconfig
 
 cd /opt/opencv-${OPENCV_VERSION}/samples
 cmake .
 make -j$NUM_JOBS
 
 cd /usr/lib/python3.6/lib-dynload
-sudo ln -s /usr/lib/python3.6/dist-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so
+sudo ln -s /usr/lib/python3/dist-packages/cv2/python-3.6/cv2.cpython-36m-aarch64-linux-gnu.so
 cd /usr/lib/python2.7/lib-dynload
 sudo ln -s /usr/lib/python2.7/dist-packages/cv2/python-2.7/cv2.so
-

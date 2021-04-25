@@ -1,5 +1,7 @@
 #!/bin/bash
+
 echo "Removing OpenCV"
+sudo apt -y install htop nano
 sudo apt remove -y ros-melodic*
 sudo apt remove -y python-opencv
 sudo apt remove -y python3-opencv
