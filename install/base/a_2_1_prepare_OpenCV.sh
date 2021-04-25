@@ -13,9 +13,9 @@ sudo apt install -y libxvidcore-dev x264 libx264-dev libfaac-dev libmp3lame-dev 
 sudo apt install -y libfaac-dev libmp3lame-dev libvorbis-dev
 sudo apt install -y libopencore-amrnb-dev libopencore-amrwb-dev
 sudo apt-get install -y libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils
-cd /usr/include/linux
-sudo ln -s -f ../libv4l1-videodev.h videodev.h
-cd -
+# cd /usr/include/linux
+# sudo ln -s -f ../libv4l1-videodev.h videodev.h
+# cd -
 sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y python3-dev python3-pip
 sudo apt-get install -y python-dev python-pip
