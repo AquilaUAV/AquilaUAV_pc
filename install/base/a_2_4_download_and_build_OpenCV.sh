@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-OPENCV_VERSION=3.2.0
+OPENCV_VERSION=3.4.14
 ARCH_BIN=5.3
 INSTALL_DIR=/usr/local
 DOWNLOAD_OPENCV_EXTRAS=YES
@@ -52,7 +52,15 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D WITH_QT=ON \
       -D WITH_OPENGL=ON \
       -D BUILD_opencv_python2=ON \
+      -D PYTHON3_EXECUTABLE=/usr/bin/python2.7 \
+      -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7/dist-packages/numpy/core/include/ \
+      -D PYTHON3_PACKAGES_PATH=/usr/local/lib/python2.7/dist-packages \
+      -D PYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython2.7m.so \
       -D BUILD_opencv_python3=ON \
+      -D PYTHON3_EXECUTABLE=/usr/bin/python3.6 \
+      -D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.6/dist-packages/numpy/core/include/ \
+      -D PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.6/dist-packages \
+      -D PYTHON3_LIBRARY=/usr/lib/aarch64-linux-gnu/libpython3.6m.so \
       -D BUILD_TESTS=ON \
       -D BUILD_PERF_TESTS=ON \
       -D BUILD_DOCS=ON \
