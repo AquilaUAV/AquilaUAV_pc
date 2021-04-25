@@ -1,6 +1,6 @@
 # AquilaUAV_pc
 
-Это репозиторий для настройки идентичного Nvidia Jetson JetPack 4.5.1 рабочего окружения на компьютере с GPU Nvidia.
+Это репозиторий для настройки рабочего окружения c Nvidia Jetson JetPack 4.5.1 на Nvidia Jetson Nano.
 
 
 
