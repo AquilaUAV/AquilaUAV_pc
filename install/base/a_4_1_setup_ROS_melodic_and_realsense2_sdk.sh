@@ -2,15 +2,14 @@
 
 NUM_JOBS=$(nproc)
 
-rm -rf ~/catkin_workspaces
+rm -rf ~/catkin_ws
 
-mkdir -p ~/catkin_workspaces/catkin_global_ws/src
-cd ~/catkin_workspaces/catkin_global_ws/src
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
 catkin_init_workspace
-cd ~/catkin_workspaces/catkin_global_ws
+cd ~/catkin_ws
 catkin_make -j$NUM_JOBS
-echo "source ~/catkin_workspaces/catkin_global_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+sudo /bin/bash -c 'echo source ~/catkin_ws/devel/setup.bash >> /etc/bash.bashrc'
 
 sudo apt install -y ros-melodic-usb-cam
 
