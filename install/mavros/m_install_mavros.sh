@@ -3,7 +3,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-sudo apt install ros-melodic-mav*
+sudo apt install -y ros-melodic-mav*
 
 rm -rf ~/AquilaBuild
 mkdir ~/AquilaBuild
