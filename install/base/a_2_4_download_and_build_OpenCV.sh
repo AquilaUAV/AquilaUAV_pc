@@ -82,4 +82,5 @@ sed -i 's/# add_subdirectory(gpu)/add_subdirectory(gpu)/' CMakeLists.txt
 cmake .
 make -j$NUM_JOBS -i
 
-sed -i 's/SET(OpenCV_VERSION 3.2.0)/SET(OpenCV_VERSION ${OPENCV_VERSION})/' /usr/share/OpenCV/OpenCVConfig.cmake
+sudo sed -i 's/SET(OpenCV_VERSION 3.2.0)/SET(OpenCV_VERSION 3.4.14)/' /usr/share/OpenCV/OpenCVConfig.cmake
+
