@@ -85,5 +85,5 @@ sudo ldconfig
 cd /opt/opencv-${OPENCV_VERSION}/samples
 sed -i 's/# add_subdirectory(gpu)/add_subdirectory(gpu)/' CMakeLists.txt
 cmake .
-make -j$NUM_JOBS
+make -j$NUM_JOBS -i
 
