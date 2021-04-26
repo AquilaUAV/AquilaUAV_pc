@@ -51,6 +51,6 @@ sudo apt-get install -y libbz2-dev
 
 sudo /bin/bash -c 'echo export OPENBLAS_CORETYPE=ARMV8 >> /etc/bash.bashrc'
 sudo /bin/bash -c 'echo export CUDA_HOME=/usr/local/cuda >> /etc/bash.bashrc'
-sudo /bin/bash -c 'echo export PATH=/usr/local/cuda/bin:$PATH >> /etc/bash.bashrc'
-sudo /bin/bash -c 'echo export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH >> /etc/bash.bashrc'
+sudo /bin/bash -c 'echo export PATH=/usr/local/cuda/bin:\$PATH >> /etc/bash.bashrc'
+sudo /bin/bash -c 'echo export LD_LIBRARY_PATH=/usr/local/cuda/lib64:\$LD_LIBRARY_PATH >> /etc/bash.bashrc'
 sudo ln -s /usr/include/locale.h /usr/include/xlocale.h
