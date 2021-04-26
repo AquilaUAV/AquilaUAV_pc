@@ -82,14 +82,7 @@ make -j$NUM_JOBS
 sudo make -j$NUM_JOBS install
 sudo ldconfig
 
-#sudo /bin/bash -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
-#sudo ldconfig
-
 cd /opt/opencv-${OPENCV_VERSION}/samples
 cmake .
 make -j$NUM_JOBS
 
-#cd /usr/lib/python3.6/lib-dynload
-#sudo ln -s /usr/lib/python3/dist-packages/cv2/python-3.6/cv2.cpython-36m-aarch64-linux-gnu.so
-#cd /usr/lib/python2.7/lib-dynload
-#sudo ln -s /usr/lib/python2.7/dist-packages/cv2/python-2.7/cv2.so
