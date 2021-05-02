@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt-get update -y
 sudo apt install -y build-essential cmake pkg-config unzip yasm git checkinstall
 sudo apt install -y libjpeg-dev libpng-dev libtiff-dev
 sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libavresample-dev
@@ -7,10 +8,13 @@ sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 sudo apt install -y libxvidcore-dev x264 libx264-dev libfaac-dev libmp3lame-dev libtheora-dev 
 sudo apt install -y libfaac-dev libmp3lame-dev libvorbis-dev
 sudo apt install -y libopencore-amrnb-dev libopencore-amrwb-dev
-sudo apt-get install -y libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils
+sudo apt install -y libdc1394-22 libdc1394-22-dev libxine2-dev libv4l-dev v4l-utils
+sudo apt install -y libgtk2.0-dev libcanberra-gtk*
+sudo apt install -y libblas-dev
 cd /usr/include/linux
 sudo ln -s -f ../libv4l1-videodev.h videodev.h
 cd -
+sudo apt-get update -y
 sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y python3-dev python3-pip
 sudo apt-get install -y python-dev python-pip
@@ -24,6 +28,7 @@ python -m pip install imutils
 python3 -m pip install numpy
 python3 -m pip install pillow
 python3 -m pip install imutils
+sudo apt-get update -y
 sudo apt-get install -y libtbb-dev
 sudo apt-get install -y libatlas-base-dev gfortran
 sudo apt-get install -y libprotobuf-dev protobuf-compiler

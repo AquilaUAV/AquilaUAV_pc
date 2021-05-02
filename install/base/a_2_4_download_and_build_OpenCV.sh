@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPENCV_VERSION=3.4.14
+OPENCV_VERSION=4.5.2
 ARCH_BIN=6.1
 INSTALL_DIR=/usr
 DOWNLOAD_OPENCV_EXTRAS=YES
@@ -22,11 +22,9 @@ unzip opencv_extra.zip
 
 cd $OPENCV_SOURCE_DIR
 sudo cp -rf opencv-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}
-CUR_USER=$(whoami)
-sudo chown -R $CUR_USER /opt/opencv-${OPENCV_VERSION}
-cp -rf opencv_extra-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_extra-${OPENCV_VERSION}
-cp -rf opencv_contrib-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}
-sudo chown -R $CUR_USER /opt/opencv-${OPENCV_VERSION}
+sudo cp -rf opencv_extra-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_extra-${OPENCV_VERSION}
+sudo cp -rf opencv_contrib-${OPENCV_VERSION} /opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}
+sudo chown -R $USER:$USER /opt/opencv-${OPENCV_VERSION}
 
 cd /opt/opencv-${OPENCV_VERSION}
 mkdir build
@@ -43,13 +41,21 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CUDA_FAST_MATH=ON \
       -D WITH_CUDNN=ON \
       -D OPENCV_DNN_CUDA=ON \
-      -D CUDNN_INCLUDE_DIR=/usr/lib/x86_64-linux-gnu \
+      -D CUDNN_INCLUDE_DIR=/usr/local/cuda/include \
       -D CUDNN_LIBRARY=/usr/lib/x86_64-linux-gnu/libcudnn.so.8 \
       -D WITH_CUBLAS=ON \
       -D WITH_LIBV4L=ON \
       -D WITH_V4L=ON \
       -D WITH_QT=ON \
+      -D WITH_OPENMP=ON \
       -D WITH_OPENGL=ON \
+      -D WITH_OPENCL=ON \
+      -D BUILD_TIFF=ON \
+      -D WITH_FFMPEG=ON \
+      -D WITH_GSTREAMER=ON \
+      -D WITH_TBB=ON \
+      -D BUILD_TBB=ON \
+      -D WITH_EIGEN=ON \
       -D EIGEN_INCLUDE_PATH=/usr/include/eigen3 \
       -D BUILD_opencv_python2=ON \
       -D PYTHON2_EXECUTABLE=/usr/bin/python2.7 \
@@ -69,8 +75,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D INSTALL_PYTHON_EXAMPLES=ON \
       -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv-${OPENCV_VERSION}/opencv_contrib-${OPENCV_VERSION}/modules \
       -D OPENCV_ENABLE_NONFREE=ON \
+      -D OPENCV_GENERATE_PKGCONFIG=ON \
       $"PACKAGE_OPENCV" \
       ..
+
 
 
 make -j$NUM_JOBS
@@ -81,6 +89,4 @@ cd /opt/opencv-${OPENCV_VERSION}/samples
 sed -i 's/# add_subdirectory(gpu)/add_subdirectory(gpu)/' CMakeLists.txt
 cmake .
 make -j$NUM_JOBS -i
-
-sudo sed -i 's/SET(OpenCV_VERSION 3.2.0)/SET(OpenCV_VERSION 3.4.14)/' /usr/share/OpenCV/OpenCVConfig.cmake
 
