@@ -44,6 +44,10 @@ roscore
 
 roslaunch realsense2_camera rs_t265.launch enable_fisheye1:=true enable_fisheye2:=true unite_imu_method:=linear_interpolation enable_gyro:=true enable_accel:=true enable_sync:=true
 
+rosparam set /camera/tracking_module/enable_mapping false
+
+rosrun camera_calibration cameracalibrator.py --approximate 0.1 --size 8x6 --square 0.108 right:=/camera/fisheye2/image_raw left:=/camera/fisheye1/image_raw right_camera:=/camera/fisheye2 left_camera:=/camera/fisheye1
+
 rosrun imu_filter_madgwick imu_filter_node \
     _use_mag:=false \
     _publish_tf:=false \
@@ -51,16 +55,46 @@ rosrun imu_filter_madgwick imu_filter_node \
     /imu/data_raw:=/camera/imu \
     /imu/data:=/rtabmap/imu
 
-source /opt/rtabmap_ws/devel/setup.bash
-roslaunch rtabmap_ros stereo_mapping.launch \
-   rtabmap_args:="--delete_db_on_start" \
+python camera_info_pub.py \
+   _url:=/home/d3dx13/left.yaml \
+   image:=/camera/fisheye1/image_raw \
+   camera_info:=/camera/fisheye1/camera_info_calib
+
+python camera_info_pub.py \
+   _url:=/home/d3dx13/right.yaml \
+   image:=/camera/fisheye2/image_raw \
+   camera_info:=/camera/fisheye2/camera_info_calib
+
+roslaunch rtabmap_ros rtabmap.launch \
+   args:="-d --Rtabmap/ImagesAlreadyRectified false" \
+   stereo:=true \
    left_image_topic:=/camera/fisheye1/image_raw \
    right_image_topic:=/camera/fisheye2/image_raw \
-   left_camera_info_topic:=/camera/fisheye1/image_raw \
-   right_camera_info_topic:=/camera/fisheye2/image_raw \
-   stereo:=true \
-   wait_imu_to_init:=true \
-   imu_topic:=/rtabmap/imu
+   left_camera_info_topic:=/camera/fisheye1/camera_info_calib \
+   right_camera_info_topic:=/camera/fisheye2/camera_info_calib \
+   visual_odometry:=false \
+   odom_frame_id:=camera_odom_frame
+
+rosrun rtabmap_ros rtabmap -d \
+   --Rtabmap/ImagesAlreadyRectified false \
+   --Rtabmap/DetectionRate 0 \
+   _subscribe_depth:=false \
+   rgb/image:=/camera/fisheye1/image_raw \
+   rgb/camera_info:=/camera/fisheye1/camera_info_calib \
+   _odom_frame_id:=camera_odom_frame \
+   _frame_id:=camera_pose_frame
+
+rosrun rtabmap_ros rtabmapviz _odom_frame_id:=camera_odom_frame
+
+ROS_NAMESPACE=my_stereo rosrun stereo_image_proc stereo_image_proc \
+    left/image_raw:=/camera/fisheye1/image_raw \
+    right/image_raw:=/camera/fisheye2/image_raw \
+    left/camera_info:=/camera/fisheye1/camera_info_calib \
+    right/camera_info:=/camera/fisheye2/camera_info_calib \
+    __ns:=stereo \
+    _approximate_sync:=true
+
+rosrun image_view image_view image:=/stereo/left/image_rect_color
 
 # roslaunch rtabmap_ros euroc_datasets.launch args:="Odom/Strategy 9 OdomVINS/ConfigPath /home/d3dx13/vins-application/t265_config.yaml" MH_seq:=true raw_images_for_odom:=true
 

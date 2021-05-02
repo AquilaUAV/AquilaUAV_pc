@@ -90,3 +90,5 @@ sed -i 's/# add_subdirectory(gpu)/add_subdirectory(gpu)/' CMakeLists.txt
 cmake .
 make -j$NUM_JOBS -i
 
+sudo ln -s /usr/lib/python3/dist-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so /usr/lib/python3.6/lib-dynload/cv2.cpython-36m-x86_64-linux-gnu.so
+sudo ln -s /usr/lib/python3/dist-packages/cv2/python-3.6/cv2.cpython-36m-x86_64-linux-gnu.so /usr/lib/python2.7/lib-dynload/cv2.cpython-36m-x86_64-linux-gnu.so
